@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //函数定义方法一
+      function fn1() {}
+      //函数定义方法二 赋值方式声明函数
+      var fn2 = function (x, y) {
+        return x + y;
+      };
+      //函数定义方法三 箭头函数
+      var fn3 = (x, y) => x + y; //改写了上述函数
+      console.log(fn3(10, 10));
+
+      //若无参数那么应该如下定义
+      var fn4 = () => 10;
+      //若只有一个参数 如下定义
+      var fn5 = (x) => x + 1; //括号是可以省略的
+
+      //若函数内容涉及多个语句那么有如下定义  函数内容的写法与前面两种方法 并无明显优化
+      var fn6 = (x, y) => {
+        x += 5;
+        return x + y;
+      };
+
+      //返回值为对象时
+      var fn7 = function () {
+        return {
+          x: 10,
+          y: 20
+        };
+      };
+
+      //使用箭头函数要改写如下
+      var fn8 = () => ({ x: 10, y: 20 }); //即在对象外围要添加 ()
+
+      //简单介绍arr.map()功能 作用是对数组中的每个元素执行指定的函数，并返回一个新的数组
+      var num = [1, 2, 3, 4, 5, 6];
+      var numm = num.map((x) => x * x);
+      console.log(numm);
+      //上述方法是直接使用了箭头函数 否则就需要如下实现 较为繁琐
+      var nummm = num.map(function (x) {
+        return x * x;
+      });
+      console.log(nummm);
+
+      var user = {
+        name: 'zz',
+        age: 20,
+        getName() {}
+      };
+    </script>
+  </body>
+</html>

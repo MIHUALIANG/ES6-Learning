@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 4, 5];
+
+      for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+
+      //扩展运算符 可以用...arr实现上述功能
+      console.log(...arr);
+
+      //数组可以通过 apply 去借用 Math 的一些方法
+      console.log(Math.max.apply(null, arr));
+      //可以使用扩展运算符来实现该功能
+      console.log(Math.max(...arr));
+
+      var a = [1, 2, 3];
+      var b = [4, 5, 6];
+      console.log(a.concat(b)); //合并数组
+      console.log([...a, ...b]); //扩展运算符合并数组
+    </script>
+  </body>
+</html>

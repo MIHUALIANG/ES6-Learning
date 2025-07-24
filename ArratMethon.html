@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>1</h3>
+    <h3>2</h3>
+    <h3>3</h3>
+    <script>
+      //常见三种伪数组 1.argument 2.元素集合 3.类似数组的对象
+      //伪数组只能使用数组的读取方式和length属性  不能使用数组方法
+      //Array.from()将伪数组变为真正的数组  其实是转换为数组结构
+      let titles = document.querySelectorAll('h3');
+      console.log(titles);
+      console.log(Array.from(titles));
+
+      //Array.of()用用于将一组参数转变为数组  其实是打包参数为数组
+      console.log(Array.of(10, 20, 30));
+      console.log(Array.of('a', 'b', 'c'));
+    </script>
+  </body>
+</html>

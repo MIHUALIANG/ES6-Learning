@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name = 'zz';
+      //   var stu = {
+      //     name: name,
+      //     age: 18
+      //   };
+      //上述情况类中变量 name引用的是变量 name="zz" 对于这种情况(属性名和属性值是同样的变量名称) 可以简化如下
+
+      //   var stu = {
+      //     name,
+      //     age: 18,
+      //     getName: function () {
+      //       console.log(this.name);
+      //     }
+      //   };
+      //   console.log(stu.name);
+      //对于上述的函数定义可以简化如下
+
+      var stu = {
+        name,
+        age: 18,
+        getName() {
+          console.log(this.name);
+        }
+      };
+      stu.getName();
+
+      function getPoint() {
+        var x = 10;
+        var y = 20;
+        return {
+          x: x,
+          y: y
+        };
+      }
+      //简化如下
+      function getPoint() {
+        var x = 10;
+        var y = 20;
+        return { x, y };
+      }
+      console.log(getPoint().x, getPoint().y);
+
+      //动态属性名
+      var work = 'teach';
+      var people = {
+        [work]: 'python',
+        age: 18
+      };
+      console.log(people);
+
+      //对象展开
+      var z = { a: 10, b: 20 };
+      console.log(z);
+
+      var zz = { z };
+      //   var zz = { ...z };
+      console.log(zz);
+    </script>
+  </body>
+</html>
