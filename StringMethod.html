@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //字符串包含关系判断
+      //indexof()方法可用于显示一个字符串是否存在于另一个字符串中 ES6中又给出了三个新的方法
+      var str = 'Hello World!';
+
+      console.log(str.includes('Hello')); //包含即可
+      console.log(str.startsWith('Hello')); //必须在头部
+      console.log(str.endsWith('Hello')); //必须在尾部
+      console.log(str.endsWith('World!'));
+
+      //都允许接收第二个参数 代表开始搜索的位置
+
+      //repeat()
+      var a = 'x';
+      console.log(a.repeat(3)); //实现重复功能
+
+      //padStart()  padEnd()  实现补全
+      var h = 'hello';
+      var hr = h.padStart(10, 'h'); //补全后产生一个新的字符串 不会改变原来字符串
+      console.log(hr);
+
+      var w = 'world';
+      var wr = w.padEnd(10, 'd');
+      console.log(wr);
+
+      //at()  返回参数指定位置的字符 支持负索引
+      console.log(h.at(2));
+      console.log(h[2]);
+      console.log(h.at(-1));
+      console.log(h[-1]); //该种方法不支持负索引
+    </script>
+  </body>
+</html>
