@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a id="id">id</a>
+    <script>
+      console.log('\u0061');
+      console.log('\u0062');
+      console.log('\u0063');
+
+      var str = 'hello';
+      for (let i of str) {
+        //该种遍历方法 i 即为每一个字符
+        console.log(i);
+      }
+
+      //在字符串中嵌入变量
+      var href = 'https://itbaizhan.com';
+      var text = 'itbaizhan';
+      var itbaizhan = "<a href='" + href + "'>" + text + '</a>'; //嵌入变量用  "+ 变量 +"
+
+      //若使用模板字符串
+      var it = `<a href="${href}">${text}</a>`; //嵌入变量用   ${变量}
+      var id = document.getElementById('id');
+      console.log(id); //浏览器是动态可更新显示的 因此浏览器验证时会发现即使在更改前输出 但是显示的仍然是最新的修改之后的结果
+
+      id.innerHTML = it;
+      console.log(id);
+    </script>
+  </body>
+</html>

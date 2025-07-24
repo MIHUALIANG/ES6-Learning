@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var boss = {
+        name: 'zz',
+        age: 18
+      };
+
+      console.log(boss.name);
+      console.log(boss.age);
+      //如果需要多次使用该变量那么多次boss.较为麻烦 可以使用下列解构赋值方法
+      const { name, age } = boss;
+      //此后使用时可直接用 name 和 age 相当于取别名
+      console.log(name, age);
+
+      const { log } = console;
+      log('LOG'); //把复杂过程简单化
+    </script>
+  </body>
+</html>
