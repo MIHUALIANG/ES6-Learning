@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.var关键字是函数级别的作用域
+      //2.let关键字是块级作用域  只对 {} 内的部分有效 在for循环中就很适合用let i =0  而且let没有变量提升 且不能重复定义变量
+
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+
+      a[6]();
+      //若用let i=0 那么此时i只在每个花括号中有意义 那么每个被赋值到数组的函数都有自己独特的i 因此执行结果为6
+      //若用var i=0 那么每个函数的i都是共用的 那么执行结果为 10
+    </script>
+  </body>
+</html>
