@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      //网络请求是异步的  但是有些情况下可能各个请求之间存在依赖关系 那就必须要求执行顺序
+      function ajax(url) {
+        return new Promise(function (resolve, reject) {
+          $.getJSON(
+            url,
+            function (result) {
+              resolve(result);
+            },
+            function (error) {
+              reject(error);
+            }
+          );
+        });
+      }
+
+      async function getInfo() {
+        var id = await ajax('https://iwenwiki.com/api/generator/list.php');
+        var info = await ajax(
+          'https://iwenwiki.com/api/generator/id.php?id=' + id[0]
+        );
+        var result = await ajax(
+          'https://iwenwiki.com/api/generator/name.php?name=' + info.name
+        );
+        console.log(result);
+      }
+
+      getInfo();
+    </script>
+  </body>
+</html>

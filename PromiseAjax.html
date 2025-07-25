@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定义一个函数 getJSON，封装异步网络请求，返回一个 Promise 对象
+      const getJSON = function (url) {
+        const promise = new Promise(function (resolve, reject) {
+          // 创建异步请求处理函数
+          const handler = function () {
+            // 监听状态变化，readyState 为 4 表示请求完成
+            if (this.readyState !== 4) {
+              return;
+            }
+
+            // 请求成功（状态码 200），解析结果并调用 resolve
+            if (this.status === 200) {
+              resolve(this.response); // 异步操作成功，返回结果数据（自动解析为 JSON）
+            } else {
+              // 请求失败，调用 reject 返回错误信息
+              reject(new Error(this.statusText));
+            }
+          };
+
+          // 创建 XMLHttpRequest 对象
+          const client = new XMLHttpRequest();
+          // 初始化 GET 请求，目标地址为传入的 url
+          client.open('GET', url);
+          // 注册状态监听函数
+          client.onreadystatechange = handler;
+          // 指定返回类型为 JSON（浏览器自动解析）
+          client.responseType = 'json';
+          // 设置请求头，告诉服务器希望接收 JSON 数据
+          client.setRequestHeader('Accept', 'application/json');
+          // 发送请求
+          client.send();
+        });
+
+        return promise; // 返回 Promise 实例
+      };
+
+      // 调用 getJSON 请求远程接口，返回的结果是一个 Promise
+      getJSON(
+        'https://iwenwiki.com/api/blueberrypai/getChengpinDetails.php'
+      ).then(
+        function (data) {
+          // 请求成功，输出服务器返回的 JSON 数据
+          console.log(data);
+        },
+        function (error) {
+          // 请求失败，输出错误信息
+          console.log(error);
+        }
+      );
+    </script>
+  </body>
+</html>

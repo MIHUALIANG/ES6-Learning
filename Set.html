@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var s = new Set();
+      var arr = [1, 2, 3, 3, 4, 5, 6];
+      //   arr.forEach((x) => s.add(x));与map功能一致
+      arr.map((x) => s.add(x));
+      console.log(s); //最后set中只会有一个 3 因为set结构不会添加重复的值
+
+      var ss = new Set([1, 2, 3, 4, 5, 5, 6, 7]);
+      console.log(ss); //由于Set去重的属性 可以使用该方法实现数组去重 但此时不再是数组类型
+      console.log([...ss]); //使用扩展运算符展开之后变成数组
+
+      //简化可以写为console.log(...new Set(array))
+
+      //同理可以实现字符串去重
+      console.log([...new Set('aabcddde')].join(''));
+      ss.add('5');
+      console.log(ss); //此时5和"5"会同时存在于ss中 因为Set不涉及到类型转换
+
+      //size属性
+      console.log(ss.size);
+    </script>
+  </body>
+</html>

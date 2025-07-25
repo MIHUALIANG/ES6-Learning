@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function print() {
+        //定时器是异步的 因此运行到定时器时 会直接跳过 不管定时器是否运行
+        setTimeout(() => {
+          console.log('STOP');
+        }, 10); //即使不给 setTimeout 设置时间，它默认是 0 毫秒，但它的回调函数不会立即执行，而是被放入宏任务队列中，必须等当前同步代码执行完毕后，先执行完所有微任务，再从宏任务队列中取出执行，这样保证了同步代码和微任务优先于 setTimeout 的回调，体现了 JavaScript 事件循环中同步代码、微任务和宏任务严格的执行顺序。
+
+        console.log('HELLO');
+      } //先输出 HELLO 再输出 STOP
+      print();
+
+      //async 把异步的变成同步的
+
+      //下列函数的作用就是写一个定时器 但是用例较为复杂
+      function timeout(ms) {
+        const promise = new Promise((resolve, reject) => {
+          setTimeout(function () {
+            console.log('TIME');
+            resolve();
+          }, ms); //resolve是一个函数
+        });
+        return promise;
+      }
+
+      async function asyncPrint(ms, value) {
+        //把具有异步操作的代码前面放入: await
+        await timeout(ms); //此时会先打印定时器 强制等待定时器执行完才行
+        console.log(value);
+      }
+      asyncPrint(5000, 'HELLO!');
+    </script>
+  </body>
+</html>

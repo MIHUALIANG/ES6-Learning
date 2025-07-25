@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      Promise 是一个容器，用于保存某个未来才会结束的事件（通常是一个异步操作）的结果。
+      它可以让我们用“同步的写法”组织异步流程，避免回调地狱。
+    -->
+
+    <!-- 本例中，我们用 Promise 封装图片加载过程，确保图片成功加载后再进行操作 -->
+
+    <div id="box">等待加载</div>
+
+    <script>
+      var box = document.getElementById('box');
+
+      // 封装一个异步图片加载函数load()，返回一个 Promise
+      function load(url) {
+        // 创建并返回一个 Promise 实例
+        const promise = new Promise(function (resolve, reject) {
+          // 开始执行异步操作：创建图片对象
+
+          const image = new Image(); // 创建一个 <img> 标签对象
+          image.src = url; // 设置图片路径，触发浏览器加载资源
+
+          // 图片加载成功时触发的回调
+          image.onload = function () {
+            resolve(image); // 将图片对象作为 Promise 成功结果传出（状态变为 fulfilled）
+          };
+
+          // 图片加载失败时触发的回调
+          image.onerror = function () {
+            reject(new Error('Could not load image at ' + url)); // 将错误信息传出（状态变为 rejected）
+          };
+        });
+
+        return promise; // 返回这个 promise 供调用者使用
+      }
+
+      // 调用封装的 load() 方法，开始异步加载图片
+      const promise = load(
+        'https://img95.699pic.com/photo/50650/5947.jpg_wh860.jpg'
+      );
+
+      // 使用 then() 方法注册回调处理异步结果
+      promise.then(
+        function (ima) {
+          // ima 参数来自上面 resolve(image) 中传出的 image 对象
+          // 成功：将图片元素添加到页面中
+          box.appendChild(ima);
+        },
+        function (error) {
+          // 失败：图片加载失败时的处理逻辑
+          box.innerHTML = '图片加载失败'; // 替换原有内容
+          console.log(error); // 输出错误信息以便调试s
+        }
+      );
+    </script>
+  </body>
+</html>
