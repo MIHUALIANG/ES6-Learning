@@ -49,11 +49,26 @@
       });
       console.log(nummm);
 
+      var age = 18;
       var user = {
         name: 'zz',
         age: 20,
-        getName() {}
+        getName() {
+          console.log(this.name); //zz
+        },
+        getAge() {
+          // console.log(this.age); //此时会输出20
+          // setTimeout(function () {
+          //   console.log(this.age); //此时会输出18 但是若要在使用setTimeout() 同时输出20 即不让this指向全局变量
+          // });
+
+          setTimeout(() => {
+            console.log(this.age);
+          });
+        }
       };
+      user.getAge();
+      //由于定时器函数中的this会指向全局变量 那若要避免该情况 除了使用that之外 还可以使用箭头函数 因为箭头函数没有自己的this对象 内部的this就是定义时上层作用域中的this
     </script>
   </body>
 </html>
