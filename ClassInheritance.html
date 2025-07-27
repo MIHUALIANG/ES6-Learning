@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //父类
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        getName() {
+          console.log(this.name);
+        }
+        static getType() {
+          console.log('这是一个人类');
+        }
+      }
+      //子类
+      class Student extends Person {
+        constructor(name, age, school) {
+          //子类的属性在定义时需要包含父类的属性
+          super(name, age); //并且该语句必须处于第一行
+          this.school = school;
+        }
+
+        //子类可以有自己独特的的方法
+        getSchool() {
+          console.log(this.school);
+        }
+      }
+
+      var s = new Student('zz', 18, 'xy');
+      s.getName(); //子类使用父类的实例方法
+      s.getSchool();
+      Student.getType(); //子类使用父类的静态方法
+    </script>
+  </body>
+</html>

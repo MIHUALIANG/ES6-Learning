@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        //实例方法
+        say() {
+          console.log('hello');
+        }
+
+        sayhello() {
+          console.log('SAY');
+        }
+
+        //静态方法 在一个方法前加static关键字 那么就不会被实例继承 直接通过类名来进行调用 无法通过实例对象调用
+        //静态方法中this指向当前类 this.name为类名 其他都是无定义
+
+        static sayhello() {
+          console.log('hahahahello');
+        }
+      }
+
+      //P是实例对象
+      var p = new person('zz', 18);
+      console.log(p.name);
+      p.say();
+      person.sayhello();
+      p.sayhello(); //重名的不同类型方法按照不同的调用方法区分
+
+      //静态属性 在类的定义外
+      person.age = 20;
+      console.log(person.age);
+      console.log(p.age);
+    </script>
+  </body>
+</html>

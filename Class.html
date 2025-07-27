@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //ES5标准类的定义
+      //   function Person(name, age) {
+      //     this.name = name;
+      //     this.age = age;
+      //   }//相当于构造函数
+
+      //   Person.prototype.getName = function () {
+      //     console.log(this.name);
+      //   };
+      //   var p = new Person('zz', 20);
+      //   p.getName();
+
+      //ES6标准类的定义
+      //不存在定义提升
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        } //相当于构造函数
+        getName() {
+          console.log(this.name);
+        }
+      }
+
+      var p = new Person('zz', 18);
+      p.getName();
+    </script>
+  </body>
+</html>
