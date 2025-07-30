@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
     <script>
@@ -24,12 +24,12 @@
       }
 
       async function getInfo() {
-        var id = await ajax('https://iwenwiki.com/api/generator/list.php');
+        var id = await ajax('http://iwenwiki.com/api/generator/list.php');
         var info = await ajax(
-          'https://iwenwiki.com/api/generator/id.php?id=' + id[0]
+          'http://iwenwiki.com/api/generator/id.php?id=' + id[0]
         );
         var result = await ajax(
-          'https://iwenwiki.com/api/generator/name.php?name=' + info.name
+          'http://iwenwiki.com/api/generator/name.php?name=' + info.name
         );
         console.log(result);
       }
